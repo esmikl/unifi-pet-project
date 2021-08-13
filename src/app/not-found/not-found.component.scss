@@ -1,0 +1,9 @@
+@import 'shared-variables';
+
+.not-found-image {
+  width: 100%;
+
+  @include u-media-breakpoint-up(md) {
+    width: auto;
+  }
+}
