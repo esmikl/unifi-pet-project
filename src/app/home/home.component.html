@@ -20,5 +20,30 @@
   </div>
 </div>
 <div class="featured-pets">
-  <!-- TODO: Add featured pet cards -->
+  <h2>Featured Pets</h2>
+  <div class="u-grid-container u-grid-spacing--2">
+    <div class="u-grid-item" *ngFor="let pet of featuredPets">
+      <div class="u-card">
+        <div class="u-card__media">
+          <img src="../assets/pets/{{pet.photoFile}}" />
+        </div>
+        <div class="u-card__header">
+          <div class="u-card__header-title">
+            <h3 class="u-card__header-title--primary u-mb-xs-0">
+              {{pet.name}}
+            </h3>
+            <p class="u-typography--overline u-mt-xs-0">{{pet.breed}}</p>
+            <h4 class="u-card__header-title--secondary">
+              {{pet.type}}
+            </h4>
+          </div>
+        </div>
+        <div class="u-card__content">
+          <p>Age: {{pet.age}}</p>
+          <p>{{pet.neutered/spayed}}</p>
+          <p>{{pet.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
