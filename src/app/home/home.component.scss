@@ -112,4 +112,19 @@
 
 .featured-pets__heading {
   text-align: center;
+  font-size: 1.5rem;
+  font-weight: $u-typography-font-weight-bold;
+}
+
+.featured-pets__card {
+  max-width: 30rem;
+  margin: auto;
+
+  .u-card {
+    height: 100%;
+  }
+
+  @include u-media-breakpoint-up(md) {
+    margin: 0;
+  }
 }

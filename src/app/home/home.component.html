@@ -19,10 +19,10 @@
     <h2 class="mid-section__heading">Over 500 pets have been adopted this year alone!</h2>
   </div>
 </div>
-<div class="featured-pets">
-  <h2 class="featured-pets__heading">Featured Pets</h2>
-  <div class="u-grid-container u-grid-spacing--2 u-px-xs-2">
-    <div class="u-grid-item" *ngFor="let pet of featuredPets">
+<div class="featured-pets u-layout-constrained u-mb-xs-4">
+  <h2 class="featured-pets__heading u-mb-xs-2">Featured Pets</h2>
+  <div class="u-grid-container u-grid-spacing--4 u-px-xs-2">
+    <div class="featured-pets__card u-grid-item u-xs-12 u-md-4" *ngFor="let pet of featuredPets">
       <div class="u-card">
         <div class="u-card__media">
           <img src="../assets/pets/{{pet.photoFile}}" />
@@ -42,6 +42,7 @@
           <p class="u-mb-xs-0">Age: {{pet.age}}</p>
           <p>{{pet.neutered | titlecase}}</p>
           <p class="u-mt-xs-2">{{pet.description}}</p>
+          <a routerLink="/apply">Adopt {{pet.name}}</a>
         </div>
       </div>
     </div>
