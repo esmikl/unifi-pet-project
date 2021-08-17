@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import data from '../../pets.json';
 
 @Component({
   selector: 'app-adopt',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./adopt.component.scss']
 })
 export class AdoptComponent implements OnInit {
+
+  pets = data;
 
   constructor() { }
 

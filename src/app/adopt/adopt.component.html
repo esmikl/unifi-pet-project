@@ -1,4 +1,32 @@
 <div class="main-container u-layout-constrained">
   <h1 tabindex="-1">Adopt</h1>
+  <div class="pets u-layout-constrained u-mb-xs-4">
+    <div class="u-grid-container u-grid-spacing--4 u-px-xs-2">
+      <div class="pets__card u-grid-item u-xs-12 u-sm-6 u-md-4" *ngFor="let pet of pets.pets">
+        <div class="u-card">
+          <div class="u-card__media">
+            <img src="../assets/pets/{{pet.photoFile}}" />
+          </div>
+          <div class="u-card__header u-pb-xs-0">
+            <div class="u-card__header-title">
+              <h3 class="u-card__header-title--primary u-mb-xs-0">
+                {{pet.name}}
+              </h3>
+              <p class="u-typography--overline u-mt-xs-0">{{pet.breed}}</p>
+              <h4 class="u-card__header-title--secondary">
+                {{pet.type}}
+              </h4>
+            </div>
+          </div>
+          <div class="u-card__content">
+            <p class="u-mb-xs-0">Age: {{pet.age}}</p>
+            <p>{{pet.neutered | titlecase}}</p>
+            <p class="u-mt-xs-2">{{pet.description}}</p>
+            <a routerLink="/apply">Adopt {{pet.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 

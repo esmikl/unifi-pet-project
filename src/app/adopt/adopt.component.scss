@@ -1,0 +1,13 @@
+@import 'shared-variables';
+
+.pets__card {
+  max-width: 30rem;
+
+  .u-card {
+    height: 100%;
+  }
+
+  @include u-media-breakpoint-up(md) {
+    margin: 0;
+  }
+}
