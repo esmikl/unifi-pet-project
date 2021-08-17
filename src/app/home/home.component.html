@@ -20,14 +20,14 @@
   </div>
 </div>
 <div class="featured-pets">
-  <h2>Featured Pets</h2>
-  <div class="u-grid-container u-grid-spacing--2">
+  <h2 class="featured-pets__heading">Featured Pets</h2>
+  <div class="u-grid-container u-grid-spacing--2 u-px-xs-2">
     <div class="u-grid-item" *ngFor="let pet of featuredPets">
       <div class="u-card">
         <div class="u-card__media">
           <img src="../assets/pets/{{pet.photoFile}}" />
         </div>
-        <div class="u-card__header">
+        <div class="u-card__header u-pb-xs-0">
           <div class="u-card__header-title">
             <h3 class="u-card__header-title--primary u-mb-xs-0">
               {{pet.name}}
@@ -39,9 +39,9 @@
           </div>
         </div>
         <div class="u-card__content">
-          <p>Age: {{pet.age}}</p>
-          <p>{{pet.neutered/spayed}}</p>
-          <p>{{pet.description}}</p>
+          <p class="u-mb-xs-0">Age: {{pet.age}}</p>
+          <p>{{pet.neutered | titlecase}}</p>
+          <p class="u-mt-xs-2">{{pet.description}}</p>
         </div>
       </div>
     </div>
