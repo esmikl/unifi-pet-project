@@ -11,7 +11,10 @@ import {
   UCheckboxModule,
   UAppBarModule,
   UButtonModule,
-  UDrawerModule
+  UDrawerModule,
+  UStepperModule,
+  UtilsModule,
+  USelectModule
 } from '@nelnet/unifi-components-angular';
 
 @NgModule({
@@ -28,7 +31,10 @@ import {
     UFormHelperTextModule,
     ULabelModule,
     URadioButtonModule,
-    UCheckboxModule
+    UCheckboxModule,
+    UStepperModule,
+    UtilsModule,
+    USelectModule
   ],
   exports: [
     UAppBarModule,
@@ -41,7 +47,10 @@ import {
     UFormHelperTextModule,
     ULabelModule,
     URadioButtonModule,
-    UCheckboxModule
+    UCheckboxModule,
+    UStepperModule,
+    UtilsModule,
+    USelectModule
   ]
 })
 export class UnifiComponentsModule { }

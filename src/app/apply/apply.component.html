@@ -1,3 +1,115 @@
 <div class="main-container u-layout-constrained">
-  <h1 tabindex="-1">Adoption Application</h1>
+  <h1 tabindex="-1" class="u-mb-xs-4">Adoption Application</h1>
+  <div class="u-paper">
+    <u-stepper responsive="md" [linear]="true">
+      <u-step title="Adoption Information" [stepControl]="adoptionInfoGroup">
+        <ng-template uStepContent>
+          <form class="u-grid-container u-grid-direction--column u-grid-alignitems--start" [formGroup]="adoptionInfoGroup">
+            <u-form-control [fullWidth]="true">
+              <label uLabel for="name">Name</label>
+              <input
+                u-textfield
+                type="text"
+                id="name"
+                name="name"
+                formControlName="nameCtrl"
+                required
+                [attr.aria-describedby]="adoptionInfoGroup.get('nameCtrl')!.invalid ? 'name-required' : null"
+                uFocusManager
+              />
+              <p u-form-error id="name-required">Please enter a name</p>
+            </u-form-control>
+            <u-form-control [fullWidth]="true">
+              <label uLabel for="name">Address</label>
+              <input
+                u-textfield
+                type="text"
+                id="address"
+                name="address"
+                formControlName="addressCtrl"
+                required
+                [attr.aria-describedby]="adoptionInfoGroup.get('addressCtrl')!.invalid ? 'address-required' : null"
+                uFocusManager
+              />
+              <p u-form-error id="address-required">Please enter an address</p>
+            </u-form-control>
+            <u-form-control [fullWidth]="true">
+              <label uLabel for="name">City</label>
+              <input
+                u-textfield
+                type="text"
+                id="city"
+                name="city"
+                formControlName="cityCtrl"
+                required
+                [attr.aria-describedby]="adoptionInfoGroup.get('cityCtrl')!.invalid ? 'city-required' : null"
+                uFocusManager
+              />
+              <p u-form-error id="city-required">Please enter a city</p>
+            </u-form-control>
+            <u-form-control>
+              <label uLabel for="state">State</label>
+              <select u-select name="state" id="state">
+                <option value=""></option>
+                <option value="dog">Dog</option>
+              </select>
+            </u-form-control>
+            <u-form-control [fullWidth]="true">
+              <label uLabel for="name">Zip</label>
+              <input
+                u-textfield
+                type="text"
+                id="zip"
+                name="zip"
+                formControlName="zipCtrl"
+                required
+                [attr.aria-describedby]="adoptionInfoGroup.get('zipCtrl')!.invalid ? 'zip-required' : null"
+                uFocusManager
+              />
+              <p u-form-error id="zip-required">Please enter a zip code</p>
+            </u-form-control>
+            <u-form-control [fullWidth]="true">
+              <label uLabel for="name">Phone</label>
+              <input
+                u-textfield
+                type="text"
+                id="phone"
+                name="phone"
+                formControlName="phoneCtrl"
+                required
+                [attr.aria-describedby]="adoptionInfoGroup.get('phoneCtrl')!.invalid ? 'phone-required' : null"
+                uFocusManager
+              />
+              <p u-form-error id="phone-required">Please enter a phone number</p>
+            </u-form-control>
+            <u-form-control [fullWidth]="true">
+              <label uLabel for="name">Email</label>
+              <input
+                u-textfield
+                type="text"
+                id="email"
+                name="email"
+                formControlName="emailCtrl"
+                required
+                [attr.aria-describedby]="adoptionInfoGroup.get('emailCtrl')!.invalid ? 'email-required' : null"
+                uFocusManager
+              />
+              <p u-form-error id="email-required">Please enter an email address</p>
+            </u-form-control>
+            <!-- TODO: Add DOB datepicker -->
+            <button u-button variant="outlined" color="primary" type="button" class="u-mt-xs-2" uStepperNext>
+              Next
+            </button>
+          </form>
+        </ng-template>
+      </u-step>
+      <u-step title="Household Information">
+
+      </u-step>
+      <u-step title="Pet Ownership">
+
+      </u-step>
+      <u-step title="Signature"></u-step>
+    </u-stepper>
+  </div>
 </div>
