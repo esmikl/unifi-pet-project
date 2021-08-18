@@ -16,6 +16,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AdoptComponent } from './adopt/adopt.component';
 import { FaqComponent } from './faq/faq.component';
 import { ApplyComponent } from './apply/apply.component';
+import {U_FORM_CONTROL_DEFAULT_OPTIONS} from '@nelnet/unifi-components-angular';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,12 @@ import { ApplyComponent } from './apply/apply.component';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: U_FORM_CONTROL_DEFAULT_OPTIONS,
+      useValue: {dense: true, animated: true}
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

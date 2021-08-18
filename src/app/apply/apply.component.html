@@ -1,115 +1,201 @@
 <div class="main-container u-layout-constrained">
   <h1 tabindex="-1" class="u-mb-xs-4">Adoption Application</h1>
-  <div class="u-paper">
-    <u-stepper responsive="md" [linear]="true">
-      <u-step title="Adoption Information" [stepControl]="adoptionInfoGroup">
-        <ng-template uStepContent>
-          <form class="u-grid-container u-grid-direction--column u-grid-alignitems--start" [formGroup]="adoptionInfoGroup">
-            <u-form-control [fullWidth]="true">
-              <label uLabel for="name">Name</label>
-              <input
-                u-textfield
-                type="text"
-                id="name"
-                name="name"
-                formControlName="nameCtrl"
-                required
-                [attr.aria-describedby]="adoptionInfoGroup.get('nameCtrl')!.invalid ? 'name-required' : null"
-                uFocusManager
-              />
-              <p u-form-error id="name-required">Please enter a name</p>
-            </u-form-control>
-            <u-form-control [fullWidth]="true">
-              <label uLabel for="name">Address</label>
-              <input
-                u-textfield
-                type="text"
-                id="address"
-                name="address"
-                formControlName="addressCtrl"
-                required
-                [attr.aria-describedby]="adoptionInfoGroup.get('addressCtrl')!.invalid ? 'address-required' : null"
-                uFocusManager
-              />
-              <p u-form-error id="address-required">Please enter an address</p>
-            </u-form-control>
-            <u-form-control [fullWidth]="true">
-              <label uLabel for="name">City</label>
-              <input
-                u-textfield
-                type="text"
-                id="city"
-                name="city"
-                formControlName="cityCtrl"
-                required
-                [attr.aria-describedby]="adoptionInfoGroup.get('cityCtrl')!.invalid ? 'city-required' : null"
-                uFocusManager
-              />
-              <p u-form-error id="city-required">Please enter a city</p>
-            </u-form-control>
-            <u-form-control>
-              <label uLabel for="state">State</label>
-              <select u-select name="state" id="state">
-                <option value=""></option>
-                <option value="dog">Dog</option>
-              </select>
-            </u-form-control>
-            <u-form-control [fullWidth]="true">
-              <label uLabel for="name">Zip</label>
-              <input
-                u-textfield
-                type="text"
-                id="zip"
-                name="zip"
-                formControlName="zipCtrl"
-                required
-                [attr.aria-describedby]="adoptionInfoGroup.get('zipCtrl')!.invalid ? 'zip-required' : null"
-                uFocusManager
-              />
-              <p u-form-error id="zip-required">Please enter a zip code</p>
-            </u-form-control>
-            <u-form-control [fullWidth]="true">
-              <label uLabel for="name">Phone</label>
-              <input
-                u-textfield
-                type="text"
-                id="phone"
-                name="phone"
-                formControlName="phoneCtrl"
-                required
-                [attr.aria-describedby]="adoptionInfoGroup.get('phoneCtrl')!.invalid ? 'phone-required' : null"
-                uFocusManager
-              />
-              <p u-form-error id="phone-required">Please enter a phone number</p>
-            </u-form-control>
-            <u-form-control [fullWidth]="true">
-              <label uLabel for="name">Email</label>
-              <input
-                u-textfield
-                type="text"
-                id="email"
-                name="email"
-                formControlName="emailCtrl"
-                required
-                [attr.aria-describedby]="adoptionInfoGroup.get('emailCtrl')!.invalid ? 'email-required' : null"
-                uFocusManager
-              />
-              <p u-form-error id="email-required">Please enter an email address</p>
-            </u-form-control>
-            <!-- TODO: Add DOB datepicker -->
-            <button u-button variant="outlined" color="primary" type="button" class="u-mt-xs-2" uStepperNext>
-              Next
-            </button>
-          </form>
-        </ng-template>
-      </u-step>
-      <u-step title="Household Information">
-
-      </u-step>
-      <u-step title="Pet Ownership">
-
-      </u-step>
-      <u-step title="Signature"></u-step>
-    </u-stepper>
+  <u-notification @notificationAnimation id="errorMessage" tabIndex="-1" icon="error" type="error" iconLabel="Error" *ngIf="form.submitted && form.invalid" class="u-my-xs-4 full-width">
+    <p><strong>Please correct these errors:</strong></p>
+    <ul>
+      <li *ngIf="adoptionForm.get('nameCtrl')!.invalid"><a href="name" (click)="focusInput($event, 'name')">Please enter a name.</a></li>
+      <li *ngIf="adoptionForm.get('activity')!.invalid"><a href="name" (click)="focusInput($event, 'quiet')">Please choose an activity level.</a></li>
+    </ul>
+  </u-notification>
+  <u-notification @notificationAnimation id="successMessage" tabIndex="-1" icon="success" type="success" iconLabel="Success!" *ngIf="form.submitted && form.valid" class="u-my-xs-4 full-width">
+    <p><strong>Success!</strong></p>
+    <p>Thank you for your application! Your application will be reviewed and you will be contacted with our decision.</p>
+  </u-notification>
+  <div class="u-paper adopt-form">
+    <form class="u-grid-container u-grid-direction--column u-grid-alignitems--start" [formGroup]="adoptionForm" #form="ngForm" (submit)="submit()">
+      <fieldset class="u-form-control full-width">
+        <legend class="u-form-label">Adopter Information</legend>
+        <u-form-control [fullWidth]="true">
+          <label uLabel for="name">Name</label>
+          <input
+            u-textfield
+            type="text"
+            id="name"
+            name="name"
+            formControlName="nameCtrl"
+            required
+            [attr.aria-describedby]="adoptionForm.get('nameCtrl')!.invalid ? 'name-required' : null"
+          />
+          <p u-form-error id="name-required">Please enter a name</p>
+        </u-form-control>
+        <u-form-control [fullWidth]="true">
+          <label uLabel for="name">Address</label>
+          <input
+            u-textfield
+            type="text"
+            id="address"
+            name="address"
+            formControlName="addressCtrl"
+            required
+            [attr.aria-describedby]="adoptionForm.get('addressCtrl')!.invalid ? 'address-required' : null"
+          />
+          <p u-form-error id="address-required">Please enter an address</p>
+        </u-form-control>
+        <u-form-control [fullWidth]="true">
+          <label uLabel for="name">City</label>
+          <input
+            u-textfield
+            type="text"
+            id="city"
+            name="city"
+            formControlName="cityCtrl"
+            required
+            [attr.aria-describedby]="adoptionForm.get('cityCtrl')!.invalid ? 'city-required' : null"
+          />
+          <p u-form-error id="city-required">Please enter a city</p>
+        </u-form-control>
+        <u-form-control [fullWidth]="true">
+          <label uLabel for="state">State</label>
+          <select uSelect name="state" id="state" formControlName="stateCtrl" required
+                  [attr.aria-describedby]="adoptionForm.get('stateCtrl')!.invalid ? 'state-required' : null">
+            <option value=""></option>
+            <option *ngFor="let state of states" value="state.code">{{state.name}}</option>
+          </select>
+          <p u-form-error id="state-required">Please choose a state</p>
+        </u-form-control>
+        <u-form-control [fullWidth]="true">
+          <label uLabel for="name">Zip</label>
+          <input
+            u-textfield
+            type="text"
+            id="zip"
+            name="zip"
+            formControlName="zipCtrl"
+            required
+            [attr.aria-describedby]="adoptionForm.get('zipCtrl')!.invalid ? 'zip-required' : null"
+          />
+          <p u-form-error id="zip-required">Please enter a zip code</p>
+        </u-form-control>
+        <u-form-control [fullWidth]="true">
+          <label uLabel for="name">Phone</label>
+          <input
+            u-textfield
+            type="text"
+            id="phone"
+            name="phone"
+            formControlName="phoneCtrl"
+            required
+            [attr.aria-describedby]="adoptionForm.get('phoneCtrl')!.invalid ? 'phone-required' : null"
+          />
+          <p u-form-error id="phone-required">Please enter a phone number</p>
+        </u-form-control>
+        <u-form-control [fullWidth]="true">
+          <label uLabel for="name">Email</label>
+          <input
+            u-textfield
+            type="text"
+            id="email"
+            name="email"
+            formControlName="emailCtrl"
+            required
+            [attr.aria-describedby]="adoptionForm.get('emailCtrl')!.invalid ? 'email-required' : null"
+          />
+          <p u-form-error id="email-required">Please enter an email address</p>
+        </u-form-control>
+        <u-form-control [fullWidth]="true">
+          <label uLabel for="dob">DOB</label>
+          <u-picker>
+            <input u-textfield type="date" id="dob" name="dob" required formControlName="dobCtrl"
+                   [attr.aria-describedby]="adoptionForm.get('dobCtrl')!.invalid ? 'dob-required' : null"/>
+          </u-picker>
+          <p u-form-error id="dob-required">Please enter your DOB</p>
+        </u-form-control>
+      </fieldset>
+      <fieldset class="u-form-control full-width">
+        <legend class="u-form-label">Household Information</legend>
+        <p id="household-helper" class="u-mt-xs-2">List names and ages of other members of your household:</p>
+        <u-form-control [textarea]="true" [fullWidth]="true" class="u-mt-xs-2">
+          <label uLabel for="household">Household Members</label>
+          <textarea u-textfield id="household" name="household" rows="2" formControlName="householdTextarea"
+                    [attr.aria-describedby]="adoptionForm.get('householdTextarea')!.invalid ? 'household-required' : 'household-helper'"></textarea>
+          <p u-form-error id="household-required">Please enter your household information</p>
+        </u-form-control>
+      </fieldset>
+      <fieldset class="u-form-control" [ngClass]="{'u-form-control--invalid' : form.submitted && adoptionForm.get('activity')!.invalid}">
+        <legend class="u-form-label">Household Activity</legend>
+        <u-form-control [radio]="true">
+          <u-radio-button>
+            <label uLabel for="quiet">Quiet</label>
+            <input uRadio type="radio" id="quiet"
+                   name="activity" formControlName="activity"
+                   value="quiet" required>
+          </u-radio-button>
+        </u-form-control>
+        <u-form-control [radio]="true">
+          <u-radio-button>
+            <label uLabel for="somewhatActive">Somewhat Active</label>
+            <input uRadio type="radio" id="somewhatActive"
+                   name="activity" formControlName="activity"
+                   value="somewhat-active" required>
+          </u-radio-button>
+        </u-form-control>
+        <u-form-control [radio]="true">
+          <u-radio-button>
+            <label uLabel for="active">Active</label>
+            <input uRadio type="radio" id="active"
+                   name="activity" formControlName="activity"
+                   value="active" required>
+          </u-radio-button>
+        </u-form-control>
+        <p u-form-error *ngIf="form.submitted && adoptionForm.get('activity')!.invalid">Choose an option</p>
+      </fieldset>
+      <fieldset class="u-form-control">
+        <legend class="u-form-label">Pet Ownership (Check all that apply):</legend>
+        <u-form-control [checkbox]="true">
+          <u-checkbox>
+            <label uLabel for="currently-own-pets">Currently own pets</label>
+            <input uCheckbox type="checkbox" id="currently-own-pets" formControlName="currentlyOwnPets" />
+          </u-checkbox>
+        </u-form-control>
+        <u-form-control [checkbox]="true">
+          <u-checkbox>
+            <label uLabel for="previously-owned">Owned a pet within the past 5 years</label>
+            <input uCheckbox type="checkbox" id="previously-owned" formControlName="previouslyOwned" />
+          </u-checkbox>
+        </u-form-control>
+        <u-form-control [checkbox]="true">
+          <u-checkbox>
+            <label uLabel for="re-homed">Had to re-home a previous pet</label>
+            <input uCheckbox type="checkbox" id="re-homed" formControlName="reHomed" />
+          </u-checkbox>
+        </u-form-control>
+      </fieldset>
+      <fieldset class="u-form-control">
+        <legend class="u-form-label">Signature</legend>
+        <p id="certification" class="u-mt-xs-2">I certify that all information on this application is true. I understand my application may be denied if any of the information is false.</p>
+        <u-form-control [fullWidth]="true">
+          <label uLabel for="name">Signature</label>
+          <input
+            u-textfield
+            type="text"
+            id="signature"
+            name="signature"
+            formControlName="signature"
+            required
+            [attr.aria-describedby]="adoptionForm.get('signature')!.invalid ? 'signature-required' : 'certification'"
+          />
+          <p u-form-error id="signature-required">Please enter your full name as your signature</p>
+        </u-form-control>
+        <u-form-control [fullWidth]="true">
+          <label uLabel for="dob">Date Signed</label>
+          <u-picker>
+            <input u-textfield type="date" id="date-signed" name="date-signed" required formControlName="dateSigned"
+                   [attr.aria-describedby]="adoptionForm.get('dateSigned')!.invalid ? 'date-required' : null"/>
+          </u-picker>
+          <p u-form-error id="date-required">Please choose a date</p>
+        </u-form-control>
+      </fieldset>
+      <button u-button variant="contained" color="secondary" type="submit" class="u-ml-xs-auto u-mt-xs-4">Submit</button>
+    </form>
   </div>
 </div>
